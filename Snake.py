@@ -1,9 +1,9 @@
 from Animal import Animal
 
 
-class Serpent(Animal):
-    def __init__(self, weight, height):
-        super().__init__(weight, height)
+class Snake(Animal):
+    def __init__(self, name, weight, height):
+        super().__init__(name, weight, height)
 
-    def se_deplacer(self):
+    def to_move(self):
         print("je rampe")
