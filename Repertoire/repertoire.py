@@ -1,4 +1,6 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
+import json
+from unittest import result
 
 
 @dataclass
@@ -41,13 +43,17 @@ class Repertoire:
     def add_contact(self, personne: Personne):
         self.contacts.append(personne)
 
+    def to_json(self):
+        json_data = json.dumps(asdict(self), indent=2, ensure_ascii=False)
+        return json_data
+
     def __str__(self):
         if not self.contacts:
             return "Répertoire vide."
-        result = "Répertoire :\n"
+        repertoire = "Répertoire :\n"
         for personne in self.contacts:
-            result += f"  {personne}\n"
-        return result.rstrip()
+            repertoire += f"  {personne}\n"
+        return repertoire.rstrip()
 
 
 if __name__ == "__main__":
@@ -64,3 +70,4 @@ if __name__ == "__main__":
     repertoire1.add_contact(personne2)
 
     print(repertoire1)
+    print(repertoire1.to_json())
