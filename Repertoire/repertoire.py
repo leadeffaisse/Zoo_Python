@@ -47,6 +47,13 @@ class Repertoire:
         json_data = json.dumps(asdict(self), indent=2, ensure_ascii=False)
         return json_data
 
+    def write_json(self, filepath):
+        try:
+            with open(filepath, 'w') as f:
+                f.write(self.to_json())
+        except Exception as e:
+            print(f'Failed to write to {filepath}: {e}')
+
     def __str__(self):
         if not self.contacts:
             return "Répertoire vide."
@@ -70,4 +77,4 @@ if __name__ == "__main__":
     repertoire1.add_contact(personne2)
 
     print(repertoire1)
-    print(repertoire1.to_json())
+    repertoire1.write_json("repertoire1.json")
